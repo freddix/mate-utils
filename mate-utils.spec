@@ -1,7 +1,7 @@
 Summary:	MATE utilities
 Name:		mate-utils
 Version:	1.6.0
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v2
 Group:		X11/Applications
@@ -50,12 +50,12 @@ Requires:	gtk-doc-common
 %description -n libmatedict-apidocs
 libmatedict API documentation.
 
-%package mate-disk-usage-analyzer
+%package disk-usage-analyzer
 Summary:	Graphical directory tree analyzer
 Group:		X11/Applications
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
-%description mate-disk-usage-analyzer
+%description disk-usage-analyzer
 Graphical directory tree analyzer.
 
 %package dictionary
@@ -146,12 +146,12 @@ rm -rf $RPM_BUILD_ROOT
 %post   -n libmatedict -p /usr/sbin/ldconfig
 %postun -n libmatedict -p /usr/sbin/ldconfig
 
-%post mate-disk-usage-analyzer
+%post disk-usage-analyzer
 %scrollkeeper_update_post
 %update_icon_cache hicolor
 %update_gsettings_cache
 
-%postun mate-disk-usage-analyzer
+%postun disk-usage-analyzer
 %scrollkeeper_update_postun
 %update_gsettings_cache
 
@@ -208,7 +208,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_gtkdocdir}/matedict
 %endif
 
-%files mate-disk-usage-analyzer -f mate-disk-usage-analyzer.lang
+%files disk-usage-analyzer -f mate-disk-usage-analyzer.lang
 %defattr(644,root,root,755)
 %doc baobab/AUTHORS baobab/README baobab/TODO
 %attr(755,root,root) %{_bindir}/mate-disk-usage-analyzer
