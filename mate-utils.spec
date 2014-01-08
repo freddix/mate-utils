@@ -1,12 +1,12 @@
 Summary:	MATE utilities
 Name:		mate-utils
-Version:	1.6.0
-Release:	2
+Version:	1.6.1
+Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
-# Source0-md5:	47e832003c4c56854b3c6c79ae4400b9
+# Source0-md5:	936114a9cb7b42e43c56a0823cbb8258
 URL:		http://www.mate.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -136,10 +136,6 @@ rm -rf $RPM_BUILD_ROOT
 %find_lang mate-search-tool --with-mate --with-omf --all-name
 %find_lang mate-system-log --with-mate --with-omf --all-name
 
-mv $RPM_BUILD_ROOT%{_iconsdir}/{mate,hicolor}
-mv $RPM_BUILD_ROOT%{_iconsdir}/hicolor/24x24/apps/{baobab.png,mate-disk-usage-analyzer.png}
-mv $RPM_BUILD_ROOT%{_iconsdir}/hicolor/scalable/apps/{baobab.svg,mate-disk-usage-analyzer.svg}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -202,11 +198,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/mate-dict
 %{_pkgconfigdir}/mate-dict.pc
 
-%if 0
 %files -n libmatedict-apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/matedict
-%endif
+%{_gtkdocdir}/mate-dict
 
 %files disk-usage-analyzer -f mate-disk-usage-analyzer.lang
 %defattr(644,root,root,755)
