@@ -1,27 +1,27 @@
 Summary:	MATE utilities
 Name:		mate-utils
-Version:	1.6.1
+Version:	1.8.0
 Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
-# Source0-md5:	936114a9cb7b42e43c56a0823cbb8258
+Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
+# Source0-md5:	7961435ec1b5210e886c5a223b67d02a
 URL:		http://www.mate.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
-BuildRequires:	mate-desktop-devel
-BuildRequires:	mate-panel-devel
+BuildRequires:	mate-desktop-devel >= 1.8.0
+BuildRequires:	mate-panel-devel >= 1.8.0
 BuildRequires:	intltool
 BuildRequires:	libgtop-devel
 BuildRequires:	libtool
 BuildRequires:	pkg-config
 BuildRequires:	popt-devel
+BuildRequires:	yelp-tools
 Requires(post,postun):	/usr/bin/gtk-update-icon-cache
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	glib-gio-gsettings
-Requires(post,postun):	rarian
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -106,15 +106,12 @@ Allows to make a desktop screenshot.
 %build
 %{__intltoolize}
 %{__libtoolize}
-mate-doc-prepare --copy --force
-%{__gtkdocize}
 %{__aclocal} -I m4
 %{__autoheader}
 %{__autoconf}
 %{__automake}
 %configure \
 	--disable-schemas-compile	\
-	--disable-scrollkeeper		\
 	--disable-silent-rules		\
 	--disable-static		\
 	--with-html-dir=%{_gtkdocdir}
@@ -131,10 +128,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/{ca@valencia,en@shaw}
 
 %find_lang %{name}
-%find_lang mate-disk-usage-analyzer --with-mate --with-omf
-%find_lang mate-dictionary --with-mate --with-omf
-%find_lang mate-search-tool --with-mate --with-omf --all-name
-%find_lang mate-system-log --with-mate --with-omf --all-name
+%find_lang mate-disk-usage-analyzer --with-mate
+%find_lang mate-dictionary --with-mate
+%find_lang mate-search-tool --with-mate --all-name
+%find_lang mate-system-log --with-mate --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -143,36 +140,28 @@ rm -rf $RPM_BUILD_ROOT
 %postun -n libmatedict -p /usr/sbin/ldconfig
 
 %post disk-usage-analyzer
-%scrollkeeper_update_post
 %update_icon_cache hicolor
 %update_gsettings_cache
 
 %postun disk-usage-analyzer
-%scrollkeeper_update_postun
 %update_gsettings_cache
 
 %post dictionary
-%scrollkeeper_update_post
 %update_gsettings_cache
 
 %postun dictionary
-%scrollkeeper_update_postun
 %update_gsettings_cache
 
 %post logview
-%scrollkeeper_update_post
 %update_gsettings_cache
 
 %postun logview
-%scrollkeeper_update_postun
 %update_gsettings_cache
 
 %post search-tool
-%scrollkeeper_update_post
 %update_gsettings_cache
 
 %postun search-tool
-%scrollkeeper_update_postun
 %update_gsettings_cache
 
 %post screenshot
