@@ -1,12 +1,12 @@
 Summary:	MATE utilities
 Name:		mate-utils
-Version:	1.8.0
+Version:	1.8.1
 Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
-# Source0-md5:	7961435ec1b5210e886c5a223b67d02a
+# Source0-md5:	8ad43bc8be61a020da750889e6390f04
 URL:		http://www.mate.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
